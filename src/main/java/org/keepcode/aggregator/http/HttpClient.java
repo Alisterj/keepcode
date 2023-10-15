@@ -20,8 +20,10 @@ public class HttpClient {
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 final InputStreamReader inputStreamReader = new InputStreamReader(connection.getInputStream());
                 final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
                 return new Response(connection.getResponseCode(), bufferedReader.readLine());
             }
+
             return new Response(connection.getResponseCode(), null);
 
         } catch (IOException e) {
@@ -40,4 +42,5 @@ public class HttpClient {
     public Response head(URL url) throws ConnectionException {
         return connect(url, HttpMethod.HEAD);
     }
+
 }

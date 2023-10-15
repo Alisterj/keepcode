@@ -1,11 +1,23 @@
 package org.keepcode.aggregator.parser;
 
 public class Number {
-    private final Long id;
-    private String name;
 
-    public Number(Long id, String name) {
-        this.id = id;
-        this.name = name;
+    private String number;
+
+    public Number( String number) {
+        this.number = number;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    @Override
+    public String toString() {
+        return "Toll-free phone number: %s".formatted(number);
     }
 }

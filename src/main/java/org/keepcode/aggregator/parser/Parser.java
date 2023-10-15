@@ -21,10 +21,22 @@ public class Parser {
 
             countries.add(new Country(id, name));
         }
+
         return countries;
     }
 
-    public List<Number> getNumbers(Long id) {
-        return null;
+    public List<Number> getNumbers(String data) {
+        final JSONObject jsonObject = new JSONObject(data).getJSONObject("numbers");
+
+        List<Number> numbers = new ArrayList<>();
+
+        for (String key: jsonObject.keySet()) {
+            final JSONObject jsonObject1 = jsonObject.getJSONObject(key);
+            final String number = jsonObject1.getString("full_number");
+
+            numbers.add(new Number(number));
+        }
+
+        return numbers;
     }
 }
