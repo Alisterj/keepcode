@@ -1,7 +1,10 @@
 package org.keepcode;
 
+import org.keepcode.aggregator.NumberAggregator;
+
 public class Main {
+
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        NumberAggregator numberAggregator = new NumberAggregator();
     }
 }
