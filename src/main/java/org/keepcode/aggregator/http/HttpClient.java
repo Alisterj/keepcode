@@ -9,13 +9,7 @@ import java.net.URL;
 
 public class HttpClient {
 
-    public static void main(String[] args) throws IOException, ConnectionException {
-        final String API_LINK = "https://onlinesim.io/api/getFreeList";
-        Response response = get(new URL(API_LINK));
-        System.out.println(response);
-    }
-
-    private static Response connect(URL url, HttpMethod httpMethod) throws ConnectionException {
+    private Response connect(URL url, HttpMethod httpMethod) throws ConnectionException {
         HttpsURLConnection connection = null;
 
         try {
@@ -39,11 +33,11 @@ public class HttpClient {
         }
     }
 
-    public static Response get(URL url) throws ConnectionException {
+    public Response get(URL url) throws ConnectionException {
         return connect(url, HttpMethod.GET);
     }
 
-    public static Response head(URL url) throws ConnectionException {
+    public Response head(URL url) throws ConnectionException {
         return connect(url, HttpMethod.HEAD);
     }
 }
