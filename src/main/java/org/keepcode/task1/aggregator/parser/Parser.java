@@ -1,4 +1,4 @@
-package org.keepcode.aggregator.parser;
+package org.keepcode.task1.aggregator.parser;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

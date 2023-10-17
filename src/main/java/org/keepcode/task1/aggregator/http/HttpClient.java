@@ -1,4 +1,4 @@
-package org.keepcode.aggregator.http;
+package org.keepcode.task1.aggregator.http;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;

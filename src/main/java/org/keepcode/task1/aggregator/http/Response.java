@@ -1,4 +1,4 @@
-package org.keepcode.aggregator.http;
+package org.keepcode.task1.aggregator.http;
 
 public class Response {
     private final int code;

@@ -1,11 +1,11 @@
-package org.keepcode.aggregator;
+package org.keepcode.task1.aggregator.requester;
 
-import org.keepcode.aggregator.http.ConnectionException;
-import org.keepcode.aggregator.http.HttpClient;
-import org.keepcode.aggregator.http.Response;
-import org.keepcode.aggregator.parser.Country;
-import org.keepcode.aggregator.parser.Number;
-import org.keepcode.aggregator.parser.Parser;
+import org.keepcode.task1.aggregator.http.ConnectionException;
+import org.keepcode.task1.aggregator.http.HttpClient;
+import org.keepcode.task1.aggregator.http.Response;
+import org.keepcode.task1.aggregator.parser.Country;
+import org.keepcode.task1.aggregator.parser.Number;
+import org.keepcode.task1.aggregator.parser.Parser;
 
 import java.net.MalformedURLException;
 import java.net.URL;
