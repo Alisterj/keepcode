@@ -1,10 +1,25 @@
 package org.keepcode.task1;
 
-import org.keepcode.task1.aggregator.NumberAggregator;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class Main {
+import java.util.Objects;
+
+public class Main extends Application {
 
     public static void main(String[] args) {
-        NumberAggregator.launchNumberAggregator(args);
+        launch();
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/formCountryNumbers.fxml")));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Country with numbers");
+        stage.show();
     }
 }
