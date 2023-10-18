@@ -6,14 +6,15 @@ import org.keepcode.task1.aggregator.http.Response;
 import org.keepcode.task1.aggregator.parser.Country;
 import org.keepcode.task1.aggregator.parser.Number;
 import org.keepcode.task1.aggregator.parser.Parser;
+import org.keepcode.task1.logger.CustomLogger;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
 public class Requester {
-    private final static String API_LINK = "https://onlinesim.io/api/getFreeList";
-    private final static String API_LINK_COUNTRY = API_LINK + "?country=%s";
+    private static final String API_LINK = "https://onlinesim.io/api/getFreeList";
+    private static final String API_LINK_COUNTRY = API_LINK + "?country=%s";
 
     private final HttpClient httpClient;
     private final Parser parser;
@@ -23,20 +24,32 @@ public class Requester {
         this.parser = new Parser();
     }
 
-    public List<Country> getCountries() throws MalformedURLException, ConnectionException {
+    public List<Country> getCountries() {
         final String data = getData(API_LINK);
+        CustomLogger.getInstance().info("Получены страны");
 
         return parser.getCountries(data);
     }
-    public List<Number> getNumbers(Long countryId) throws MalformedURLException, ConnectionException {
-        final String apiLink = API_LINK_COUNTRY.formatted(countryId);
+    public List<Number> getNumbers(Country country) {
+        final String apiLink = API_LINK_COUNTRY.formatted(country.getId());
         final String data = getData(apiLink);
+        CustomLogger.getInstance().info("Получен список номеров по стране - " + country.getName());
 
         return parser.getNumbers(data);
     }
 
-    public String getData(String apiLink) throws MalformedURLException, ConnectionException {
-        final Response response = httpClient.get(new URL(apiLink));
+    public String getData(String apiLink) {
+        final Response response;
+
+        try {
+            response = httpClient.get(new URL(apiLink));
+        } catch (ConnectionException e) {
+            CustomLogger.getInstance().error("Ошибка при выполнении HTTP-запроса", e);
+            throw new RuntimeException(e);
+        } catch (MalformedURLException e) {
+            CustomLogger.getInstance().error("Ошибка при создании URL", e);
+            throw new RuntimeException(e);
+        }
 
         return response.getData();
     }

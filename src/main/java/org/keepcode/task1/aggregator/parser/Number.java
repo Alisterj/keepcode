@@ -1,7 +1,6 @@
 package org.keepcode.task1.aggregator.parser;
 
 public class Number {
-
     private String number;
 
     public Number( String number) {

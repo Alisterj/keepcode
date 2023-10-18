@@ -2,7 +2,6 @@ package org.keepcode.task1.aggregator.parser;
 
 public class Country {
     private final Long id;
-
     private String name;
 
     public Country(Long id, String name) {
@@ -22,8 +21,8 @@ public class Country {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Country: %s".formatted(name);
-    }
+//    @Override
+//    public String toString() {
+//        return "Country: %s".formatted(name);
+//    }
 }
