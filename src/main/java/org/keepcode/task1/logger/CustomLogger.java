@@ -39,7 +39,7 @@ public class CustomLogger {
         infoLogger.log(new LogRecord(Level.INFO, message));
     }
 
-    public void error(String message, Exception e) {
+    public void error(String message) {
         eroorLogger.log(new LogRecord(Level.SEVERE, message));
     }
 }

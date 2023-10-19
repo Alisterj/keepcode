@@ -2,11 +2,18 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="358.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.keepcode.task1.form.ControllerForm">
    <children>
-      <TextArea fx:id="numbersCountryTextArea" editable="false" layoutX="43.0" layoutY="30.0" prefHeight="294.0" prefWidth="515.0" />
+      <TextArea fx:id="numbersCountryTextArea" editable="false" layoutX="38.0" layoutY="25.0" prefHeight="302.0" prefWidth="530.0" />
+      <ImageView fx:id="img404" disable="true" fitHeight="307.0" fitWidth="530.0" layoutX="38.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@img/404.png" />
+         </image>
+      </ImageView>
    </children>
    <opaqueInsets>
       <Insets />

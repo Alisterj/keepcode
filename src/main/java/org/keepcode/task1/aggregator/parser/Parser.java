@@ -2,6 +2,7 @@ package org.keepcode.task1.aggregator.parser;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.keepcode.task1.logger.CustomLogger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,8 @@ public class Parser {
             countries.add(new Country(id, name));
         }
 
+        CustomLogger.getInstance().info("Получен лист со странами из json");
+
         return countries;
     }
 
@@ -36,6 +39,8 @@ public class Parser {
 
             numbers.add(new Number(number));
         }
+
+        CustomLogger.getInstance().info("Получен лист с номерами из json");
 
         return numbers;
     }

@@ -1,5 +1,7 @@
 package org.keepcode.task1.aggregator.http;
 
+import org.keepcode.task1.logger.CustomLogger;
+
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,12 +23,15 @@ public class HttpClient {
                 final InputStreamReader inputStreamReader = new InputStreamReader(connection.getInputStream());
                 final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
+                CustomLogger.getInstance().info(connection.getResponseCode() + " данные прочитаны");
                 return new Response(connection.getResponseCode(), bufferedReader.readLine());
             }
 
+            CustomLogger.getInstance().info("Результат соединения: " + connection.getResponseCode() + " данные пустые");
             return new Response(connection.getResponseCode(), null);
 
         } catch (IOException e) {
+            CustomLogger.getInstance().error("Error connecting ");
             throw new ConnectionException("Error connecting ", e);
         } finally {
             if (connection != null){
@@ -36,10 +41,12 @@ public class HttpClient {
     }
 
     public Response get(URL url) throws ConnectionException {
+        CustomLogger.getInstance().info("Запуск метода GET");
         return connect(url, HttpMethod.GET);
     }
 
     public Response head(URL url) throws ConnectionException {
+        CustomLogger.getInstance().info("Запуск метода HEAD");
         return connect(url, HttpMethod.HEAD);
     }
 
