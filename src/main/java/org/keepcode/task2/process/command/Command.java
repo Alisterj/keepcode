@@ -5,26 +5,34 @@ import java.util.Date;
 
 public class Command {
     private final CommandType commandType;
-    private String commandText = "TEXTCOMAND";
+    private final String commandText;
     private final int maxAttempts;
     private int sendCounter;
     private Date sendDate;
-    private static final LocalTime SEND_TIME_IS_AFTER = LocalTime.of(9, 30);
-    private static final LocalTime SEND_TIME_IS_BEFORE = LocalTime.of(22, 0);
 
     public Command(CommandType commandType, int maxAttempts) {
         this.commandType = commandType;
         this.maxAttempts = maxAttempts;
         this.sendDate = new Date();
 
+        this.commandText = "commandText";
         this.sendCounter = 0;
     }
 
-    public Command(CommandType commandType, int maxAttempts, int sendCounter ) {
+    public Command(CommandType commandType, int maxAttempts, int sendCounter, String commandText) {
         this.commandType = commandType;
         this.maxAttempts = maxAttempts;
         this.sendCounter = sendCounter;
-        this.sendDate = new Date();
+        this.commandText = commandText;
+        this.sendDate = null;
+    }
+
+    public Command(CommandType commandType, int maxAttempts, int sendCounter, Date date, String commandText) {
+        this.commandType = commandType;
+        this.maxAttempts = maxAttempts;
+        this.sendCounter = sendCounter;
+        this.sendDate = date;
+        this.commandText = commandText;
     }
 
     public CommandType getCommandType() {
@@ -40,12 +48,14 @@ public class Command {
     }
 
     public boolean isAttemptsNumberExhausted() {
-        return maxAttempts <= sendCounter;
+        return !(maxAttempts > sendCounter);
     }
 
     public boolean isTimeToSend() {
-        LocalTime currentTime = LocalTime.now();
-        return currentTime.isAfter(SEND_TIME_IS_AFTER) && currentTime.isBefore(SEND_TIME_IS_BEFORE);
+        if (sendDate == null) {
+            return false;
+        }
+        return true;
     }
 
     public void incSendCounter() {
