@@ -18,10 +18,13 @@ public class ControllerForm {
 
     @FXML
     private TextArea numbersCountryTextArea;
-
     @FXML
-    private ImageView img404;
+    private ImageView error;
 
+    /**
+     * Инициализация {@link #numbersCountryTextArea} - Объект заполняется данными стран с номерами, но если приходит null то вызывается ошибка, TextArea получает visible="true" и появляется {@link #error}
+     * @throws RuntimeException Если данные не были найдены
+     */
     @FXML
     public void initialize() {
         CustomLogger.getInstance().info("Инициализация поля - TextArea");
@@ -29,8 +32,6 @@ public class ControllerForm {
         Thread thread = new Thread(() -> {
             try {
                 Map<String, List<Number>> numbersCountry = numberAggregator.getNumbersCountry();
-//                Map<String, List<Number>> numbersCountry = null;
-//                numbersCountry = numberAggregator.getNumbersCountry();
 
                 if (numbersCountry == null) {
                     Platform.runLater(() -> {
@@ -50,11 +51,8 @@ public class ControllerForm {
                 CustomLogger.getInstance().error("Ошибка данные не найдены");
 
                 Platform.runLater(() -> {
-//                    numbersCountryTextArea.setDisable(true);
                     numbersCountryTextArea.setVisible(false);
-                    img404.setVisible(true);
-                    /*numbersCountryTextArea.setFont(Font.font("Helvetica", FontWeight.BOLD, 20));
-                    numbersCountryTextArea.appendText("404\ndata not found");*/
+                    error.setVisible(true);
                 });
 
                 throw new RuntimeException("Error, you have don't current data", e);

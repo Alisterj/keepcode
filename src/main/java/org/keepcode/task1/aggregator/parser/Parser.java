@@ -9,6 +9,11 @@ import java.util.List;
 
 public class Parser {
 
+    /**
+     * Метод получает список объектов {@link Country} из JSON.
+     * @param data JSON-данные, содержащие всю информацию (Страны, номера и т.д.).
+     * @return Список объектов {@link Country}.
+     */
     public List<Country> getCountries(String data) {
         final JSONObject jsonObject = new JSONObject(data);
         final JSONArray countriesObject = jsonObject.getJSONArray("countries");
@@ -28,6 +33,11 @@ public class Parser {
         return countries;
     }
 
+    /**
+     * Метод получает JSON, обрабатывает его содержимое и выводит как результат список объектов {@link Number}
+     * @param data JSON-данные, содержащие всю информацию (Страны, номера и т.д.).
+     * @return Список объектов {@link Number}.
+     */
     public List<Number> getNumbers(String data) {
         final JSONObject jsonObject = new JSONObject(data).getJSONObject("numbers");
 

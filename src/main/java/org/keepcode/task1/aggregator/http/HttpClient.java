@@ -11,6 +11,13 @@ import java.net.URL;
 
 public class HttpClient {
 
+    /**
+     * Метод устанавливает соединение с указанным URL, используя указанный HTTP-метод
+     * @param url {@link URL}, с которым устанавливается соединение.
+     * @param httpMethod {@link HttpMethod} для указания типа запроса (GET, POST, и т.д.)
+     * @return {@link Response} представляющий результат соединения, если код ответа не 200, то второй параметр - поле data, будет null
+     * @throws ConnectionException ошибка соединения
+     */
     private Response connect(URL url, HttpMethod httpMethod) throws ConnectionException {
         HttpsURLConnection connection = null;
 
@@ -31,7 +38,7 @@ public class HttpClient {
             return new Response(connection.getResponseCode(), null);
 
         } catch (IOException e) {
-            CustomLogger.getInstance().error("Error connecting ");
+            CustomLogger.getInstance().error("Ошибка соединения");
             throw new ConnectionException("Error connecting ", e);
         } finally {
             if (connection != null){
@@ -40,11 +47,23 @@ public class HttpClient {
         }
     }
 
+    /**
+     * Метод GET выполняет HTTP-запрос по указанному URL.
+     * @param url {@link URL}, к которому будет выполнен запрос.
+     * @return Объект {@link Response}, представляющий результат выполнения запроса.
+     * @throws ConnectionException Ошибка соединения
+     */
     public Response get(URL url) throws ConnectionException {
         CustomLogger.getInstance().info("Запуск метода GET");
         return connect(url, HttpMethod.GET);
     }
 
+    /**
+     * Метод HEAD выполняет HTTP-запрос по указанному URL.
+     * @param url {@link URL}, к которому будет выполнен запрос.
+     * @return Объект {@link Response}, представляющий результат выполнения запроса.
+     * @throws ConnectionException Ошибка соединения
+     */
     public Response head(URL url) throws ConnectionException {
         CustomLogger.getInstance().info("Запуск метода HEAD");
         return connect(url, HttpMethod.HEAD);
